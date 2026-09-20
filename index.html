@@ -14,6 +14,7 @@
             --card-border: #232936;
             --accent-green: #00e676;
             --accent-gold: #ffb300;
+            --accent-red: #ef4444;
             --text-primary: #f0f4f8;
             --text-secondary: #94a3b8;
             --brand-blue: #2563eb;
@@ -44,11 +45,21 @@
         /* MATCH CARDS */
         .match-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; transition: transform 0.2s, border-color 0.2s; }
         .match-card:hover { border-color: #3b82f6; }
-        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
         .league-badge { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
         .badge-logo { width: 16px; height: 16px; object-fit: contain; }
 
-        .teams { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+        /* ODDS DROP BADGE & MOVEMENT */
+        .odds-drop-badge { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+        .odds-movement-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; border: 1px solid var(--card-border); }
+        .odds-box { display: flex; flex-direction: column; }
+        .odds-label { font-size: 0.7rem; color: var(--text-secondary); }
+        .odds-val { font-size: 0.95rem; font-weight: 700; }
+        .old-odds { text-decoration: line-through; color: #94a3b8; }
+        .current-odds { color: var(--accent-green); }
+        .odds-arrow { color: var(--text-secondary); font-size: 0.8rem; }
+
+        .teams { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
         .prediction-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--card-border); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
         .prediction-label { font-size: 0.8rem; color: var(--text-secondary); }
         .prediction-val { font-size: 0.9rem; font-weight: 700; color: var(--accent-green); }
@@ -132,18 +143,33 @@
             </div>
         </div>
 
-        <!-- FREE MATCH 1 -->
+        <!-- FREE MATCH 1: TOTTENHAM VS MAN UTD (ODDS DROP DEMO) -->
         <div class="match-card">
             <div class="card-header">
                 <span class="league-badge">
                     <img src="https://crests.football-data.org/PL.png" class="badge-logo" alt="PL"> Premier League
                 </span>
-                <span>Today</span>
+                <span class="odds-drop-badge"><i class="fa-solid fa-arrow-trend-down"></i> Drop -15%</span>
             </div>
-            <div class="teams">YASSIN vs YASSIN</div>
+            
+            <div class="teams">Tottenham vs Manchester United</div>
+
+            <!-- ODDS MOVEMENT BOX -->
+            <div class="odds-movement-row">
+                <div class="odds-box">
+                    <span class="odds-label">Opening Odds (Handicap 0)</span>
+                    <span class="odds-val old-odds">1.95</span>
+                </div>
+                <div class="odds-arrow"><i class="fa-solid fa-angles-right"></i></div>
+                <div class="odds-box">
+                    <span class="odds-label">Current Odds</span>
+                    <span class="odds-val current-odds">1.66</span>
+                </div>
+            </div>
+
             <div class="prediction-box">
                 <span class="prediction-label">Prediction</span>
-                <span class="prediction-val">UNDER 2.5 GOALS</span>
+                <span class="prediction-val">Tottenham (Handicap 0)</span>
             </div>
         </div>
 
@@ -155,10 +181,10 @@
                 </span>
                 <span>Today</span>
             </div>
-            <div class="teams">YASSIN vs YASSIN</div>
+            <div class="teams">Real Madrid vs Barcelona</div>
             <div class="prediction-box">
                 <span class="prediction-label">Prediction</span>
-                <span class="prediction-val">UNDER 2.5 GOALS</span>
+                <span class="prediction-val">BTTS - Yes</span>
             </div>
         </div>
     </section>
