@@ -23,9 +23,10 @@
         body { background-color: var(--bg-color); color: var(--text-primary); padding: 15px; line-height: 1.5; }
         .container { max-width: 680px; margin: 0 auto; }
         
-        /* HEADER */
+        /* HEADER WITH BRAND LOGO */
         header { text-align: center; padding: 25px 10px 15px 10px; border-bottom: 1px solid var(--card-border); margin-bottom: 20px; }
-        .logo-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .logo-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 12px; }
+        .brand-logo-svg { width: 42px; height: 42px; vertical-align: middle; }
         header p { color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px; font-weight: 500; }
 
         /* LEAGUES BAR WITH LOGO IMAGES */
@@ -69,10 +70,34 @@
 
 <div class="container">
 
-    <!-- HEADER -->
+    <!-- HEADER WITH INTEGRATED SVG LOGO -->
     <header>
         <div class="logo-title">
-            <i class="fa-solid fa-chart-line"></i> ODDS TRADE
+            <svg class="brand-logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
+                        <stop offset="0%" stop-color="#1e293b"/>
+                        <stop offset="100%" stop-color="#0b0e14"/>
+                    </radialGradient>
+                    <linearGradient id="brandBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#2563eb"/>
+                        <stop offset="100%" stop-color="#38bdf8"/>
+                    </linearGradient>
+                    <linearGradient id="accentGreen" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#00e676"/>
+                        <stop offset="100%" stop-color="#69f0ae"/>
+                    </linearGradient>
+                </defs>
+                <rect width="500" height="500" rx="100" fill="url(#bgGlow)"/>
+                <circle cx="250" cy="250" r="210" fill="none" stroke="url(#brandBlue)" stroke-width="12" stroke-dasharray="120 280" stroke-linecap="round"/>
+                <g transform="translate(0, -10)">
+                    <circle cx="205" cy="250" r="75" fill="none" stroke="url(#brandBlue)" stroke-width="28" stroke-linecap="round"/>
+                    <path d="M 285 175 L 375 175 M 330 175 L 330 325" fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round"/>
+                    <path d="M 160 280 L 220 230 L 270 260 L 350 160" fill="none" stroke="url(#accentGreen)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polygon points="350,145 365,175 335,170" fill="url(#accentGreen)"/>
+                </g>
+            </svg>
+            ODDS TRADE
         </div>
         <p>Premium Football Tips & Odds Analysis</p>
     </header>
