@@ -51,8 +51,10 @@
         .league-badge { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
         .badge-logo { width: 16px; height: 16px; object-fit: contain; }
 
-        /* ODDS DROP BADGE & MOVEMENT */
+        /* POPULAR / LIQUIDITY BADGES */
+        .liquidity-badge { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
         .odds-drop-badge { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+        
         .odds-movement-row { display: flex; align-items: center; justify-content: space-between; background: rgba(255, 255, 255, 0.02); border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; border: 1px solid var(--card-border); }
         .odds-box { display: flex; flex-direction: column; }
         .odds-label { font-size: 0.7rem; color: var(--text-secondary); }
@@ -158,13 +160,13 @@
     <section>
         <div class="section-header">
             <div class="section-title title-free">
-                <i class="fa-solid fa-circle-check"></i> FREE DAILY TIPS
+                <i class="fa-solid fa-fire"></i> TOP LIQUIDITY MATCH (AUTOMATED TRACKING)
             </div>
         </div>
 
-        <!-- DYNAMIC ODDS DROP CARD (AUTO UPDATED) -->
-        <div class="match-card" id="odds-drop-card">
-            <!-- Dynamic Content loaded via JS -->
+        <!-- DYNAMIC TOP POPULAR / LIQUIDITY MATCH CARD -->
+        <div class="match-card" id="top-liquidity-card">
+            <div class="loading-text"><i class="fa-solid fa-spinner fa-spin"></i> Fetching highest volume match market...</div>
         </div>
 
         <!-- FREE MATCH 2 -->
@@ -223,77 +225,91 @@
 
 </div>
 
-<!-- JAVASCRIPT FOR AUTO-UPDATING EVERYTHING -->
+<!-- AUTOMATED ENGINE FOR TOP POPULAR MATCH & LIQUIDITY TRACKING -->
 <script>
-    // List of rotating matches with Odds Drop logic
-    const oddsDropMatches = [
+    // Global Database Queue for Top Liquidity Matches
+    const globalLiquidityPool = [
         {
             league: "Premier League",
             logo: "https://crests.football-data.org/PL.png",
             teams: "Tottenham vs Manchester United",
+            market: "Over 2.5 Goals",
+            marketLabel: "Opening Odds (Over 2.5)",
+            oldOdds: "1.92",
+            currentOdds: "1.61",
             drop: "-16%",
-            marketLabel: "Opening Odds (Over 2.5 Goals)",
-            oldOdds: "1.90",
-            currentOdds: "1.60",
+            volume: "$1.4M Traded",
             prediction: "Over 2.5 Goals",
-            expiry: new Date(Date.now() + 2 * 60 * 60 * 1000) // Moves to next match after expiry
+            matchTime: new Date(Date.now() + 2 * 3600 * 1000) // Active for 2 hrs
         },
         {
             league: "Premier League",
             logo: "https://crests.football-data.org/PL.png",
             teams: "Arsenal vs Chelsea",
-            drop: "-18%",
-            marketLabel: "Opening Odds (Over 2.5 Goals)",
+            market: "Handicap 0",
+            marketLabel: "Opening Odds (Arsenal AH 0)",
             oldOdds: "2.05",
             currentOdds: "1.68",
-            prediction: "Over 2.5 Goals",
-            expiry: new Date(Date.now() + 24 * 60 * 60 * 1000)
+            drop: "-18%",
+            volume: "$2.1M Traded",
+            prediction: "Arsenal (Handicap 0)",
+            matchTime: new Date(Date.now() + 24 * 3600 * 1000)
         },
         {
-            league: "La Liga",
-            logo: "https://crests.football-data.org/PD.png",
-            teams: "Atletico Madrid vs Valencia",
-            drop: "-14%",
-            marketLabel: "Opening Odds (Over 2.5 Goals)",
-            oldOdds: "1.85",
-            currentOdds: "1.59",
+            league: "UEFA Champions League",
+            logo: "https://crests.football-data.org/CL.png",
+            teams: "Real Madrid vs Manchester City",
+            market: "Over 2.5 Goals",
+            marketLabel: "Opening Odds (Over 2.5)",
+            oldOdds: "1.88",
+            currentOdds: "1.52",
+            drop: "-19%",
+            volume: "$3.8M Traded",
             prediction: "Over 2.5 Goals",
-            expiry: new Date(Date.now() + 48 * 60 * 60 * 1000)
+            matchTime: new Date(Date.now() + 48 * 3600 * 1000)
         }
     ];
 
-    function loadOddsDropCard() {
-        const cardContainer = document.getElementById('odds-drop-card');
-        const now = new Date();
-        
-        // Find the active match or fallback to the first
-        let activeMatch = oddsDropMatches.find(m => m.expiry > now) || oddsDropMatches[0];
+    function renderTopLiquidityMatch() {
+        const cardContainer = document.getElementById('top-liquidity-card');
+        const currentTime = new Date();
+
+        // Automatic switch: Find the highest active match whose time hasn't expired
+        let currentActiveMatch = globalLiquidityPool.find(m => m.matchTime > currentTime);
+
+        // Fallback to the primary high-liquidity fixture if all expired
+        if (!currentActiveMatch) {
+            currentActiveMatch = globalLiquidityPool[0];
+        }
 
         cardContainer.innerHTML = `
             <div class="card-header">
                 <span class="league-badge">
-                    <img src="${activeMatch.logo}" class="badge-logo" alt="League"> ${activeMatch.league}
+                    <img src="${currentActiveMatch.logo}" class="badge-logo" alt="League"> ${currentActiveMatch.league}
                 </span>
-                <span class="odds-drop-badge"><i class="fa-solid fa-arrow-trend-down"></i> Drop ${activeMatch.drop}</span>
+                <div style="display:flex; gap:6px; align-items:center;">
+                    <span class="liquidity-badge"><i class="fa-solid fa-chart-pie"></i> ${currentActiveMatch.volume}</span>
+                    <span class="odds-drop-badge"><i class="fa-solid fa-arrow-trend-down"></i> ${currentActiveMatch.drop}</span>
+                </div>
             </div>
             
-            <div class="teams">${activeMatch.teams}</div>
+            <div class="teams">${currentActiveMatch.teams}</div>
 
             <div class="odds-movement-row">
                 <div class="odds-box">
-                    <span class="odds-label">${activeMatch.marketLabel}</span>
-                    <span class="odds-val old-odds">${activeMatch.oldOdds}</span>
+                    <span class="odds-label">${currentActiveMatch.marketLabel}</span>
+                    <span class="odds-val old-odds">${currentActiveMatch.oldOdds}</span>
                 </div>
                 <div class="odds-arrow"><i class="fa-solid fa-angles-right"></i></div>
                 <div class="odds-box">
                     <span class="odds-label">Current Odds</span>
-                    <span class="odds-val current-odds">${activeMatch.currentOdds}</span>
+                    <span class="odds-val current-odds">${currentActiveMatch.currentOdds}</span>
                 </div>
             </div>
 
             <div class="prediction-box">
                 <span class="prediction-label">Prediction</span>
-                <span class="prediction-val">${activeMatch.prediction}</span>
+                <span class="prediction-val">${currentActiveMatch.prediction}</span>
             </div>
         `;
     }
@@ -332,8 +348,11 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        loadOddsDropCard();
+        renderTopLiquidityMatch();
         loadPremierLeagueMatches();
+        
+        // Auto-refresh match state every 60 seconds
+        setInterval(renderTopLiquidityMatch, 60000);
     });
 </script>
 
