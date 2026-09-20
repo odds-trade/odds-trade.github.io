@@ -231,30 +231,33 @@
             league: "Premier League",
             logo: "https://crests.football-data.org/PL.png",
             teams: "Tottenham vs Manchester United",
-            drop: "-15%",
-            oldOdds: "1.95",
-            currentOdds: "1.66",
-            prediction: "Tottenham (Handicap 0)",
-            expiry: new Date(Date.now() + 2 * 60 * 60 * 1000) // Expires in 2 hours
+            drop: "-16%",
+            marketLabel: "Opening Odds (Over 2.5 Goals)",
+            oldOdds: "1.90",
+            currentOdds: "1.60",
+            prediction: "Over 2.5 Goals",
+            expiry: new Date(Date.now() + 2 * 60 * 60 * 1000) // Moves to next match after expiry
         },
         {
             league: "Premier League",
             logo: "https://crests.football-data.org/PL.png",
             teams: "Arsenal vs Chelsea",
             drop: "-18%",
-            oldOdds: "2.10",
-            currentOdds: "1.72",
-            prediction: "Arsenal (Handicap 0)",
+            marketLabel: "Opening Odds (Over 2.5 Goals)",
+            oldOdds: "2.05",
+            currentOdds: "1.68",
+            prediction: "Over 2.5 Goals",
             expiry: new Date(Date.now() + 24 * 60 * 60 * 1000)
         },
         {
             league: "La Liga",
             logo: "https://crests.football-data.org/PD.png",
             teams: "Atletico Madrid vs Valencia",
-            drop: "-12%",
-            oldOdds: "1.80",
-            currentOdds: "1.58",
-            prediction: "Atletico Madrid (Handicap 0)",
+            drop: "-14%",
+            marketLabel: "Opening Odds (Over 2.5 Goals)",
+            oldOdds: "1.85",
+            currentOdds: "1.59",
+            prediction: "Over 2.5 Goals",
             expiry: new Date(Date.now() + 48 * 60 * 60 * 1000)
         }
     ];
@@ -263,7 +266,7 @@
         const cardContainer = document.getElementById('odds-drop-card');
         const now = new Date();
         
-        // Find the first active match that hasn't expired
+        // Find the active match or fallback to the first
         let activeMatch = oddsDropMatches.find(m => m.expiry > now) || oddsDropMatches[0];
 
         cardContainer.innerHTML = `
@@ -278,7 +281,7 @@
 
             <div class="odds-movement-row">
                 <div class="odds-box">
-                    <span class="odds-label">Opening Odds (Handicap 0)</span>
+                    <span class="odds-label">${activeMatch.marketLabel}</span>
                     <span class="odds-val old-odds">${activeMatch.oldOdds}</span>
                 </div>
                 <div class="odds-arrow"><i class="fa-solid fa-angles-right"></i></div>
