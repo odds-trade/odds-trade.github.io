@@ -3,83 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odds Trade | Football Predictions</title>
+    <title>Odds Trade | Elite Football Analysis & VIP Tips</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #0d1117; color: #c9d1d9; padding: 20px; line-height: 1.6; }
-        .container { max-width: 700px; margin: 0 auto; }
+        :root {
+            --bg-color: #0b0e14;
+            --card-bg: #151921;
+            --card-border: #232936;
+            --accent-green: #00e676;
+            --accent-gold: #ffb300;
+            --text-primary: #f0f4f8;
+            --text-secondary: #94a3b8;
+            --brand-blue: #2563eb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-primary); padding: 15px; line-height: 1.5; }
+        .container { max-width: 680px; margin: 0 auto; }
         
-        header { text-align: center; padding: 30px 0 20px 0; border-bottom: 1px solid #30363d; margin-bottom: 25px; }
-        header h1 { color: #58a6ff; font-size: 1.8rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
-        header p { color: #8b949e; font-size: 0.95rem; }
+        /* HEADER */
+        header { text-align: center; padding: 25px 10px 15px 10px; border-bottom: 1px solid var(--card-border); margin-bottom: 20px; }
+        .logo-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        header p { color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px; font-weight: 500; }
 
-        section { background-color: #161b22; border: 1px solid #30363d; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
-        h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        /* LEAGUES BAR */
+        .leagues-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 10px 15px; margin-bottom: 25px; overflow-x: auto; gap: 12px; }
+        .league-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+        .league-item i { font-size: 0.95rem; }
+        .ucl { color: #38bdf8; }
+        .epl { color: #a855f7; }
+        .laliga { color: #ef4444; }
+        .seriea { color: #3b82f6; }
+        .bundesliga { color: #f97316; }
+        .ligue1 { color: #facc15; }
+
+        /* SECTION TITLES */
+        section { margin-bottom: 25px; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .section-title { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .title-free { color: var(--accent-green); }
+        .title-vip { color: var(--accent-gold); }
+
+        /* MATCH CARDS */
+        .match-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; transition: transform 0.2s, border-color 0.2s; }
+        .match-card:hover { border-color: #3b82f6; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; }
+        .league-badge { display: flex; align-items: center; gap: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
         
-        .sec-free h2 { color: #3fb950; }
-        .sec-vip h2 { color: #d29922; }
-        .sec-archive h2 { color: #58a6ff; }
+        .teams { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+        .prediction-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--card-border); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
+        .prediction-label { font-size: 0.8rem; color: var(--text-secondary); }
+        .prediction-val { font-size: 0.9rem; font-weight: 700; color: var(--accent-green); }
 
-        .card { background-color: #21262d; border-radius: 8px; padding: 14px 16px; margin-bottom: 12px; border-left: 4px solid #3fb950; }
-        .card-vip { border-left-color: #d29922; }
-        .match-title { font-weight: 600; color: #ffffff; font-size: 1rem; }
-        .tip-details { margin-top: 4px; color: #8b949e; font-size: 0.9rem; }
-        
-        .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-top: 8px; }
-        .badge-free { background-color: rgba(63, 185, 80, 0.15); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.4); }
-        .badge-vip { background-color: rgba(210, 153, 34, 0.15); color: #d29922; border: 1px solid rgba(210, 153, 34, 0.4); }
-        .badge-win { background-color: rgba(63, 185, 80, 0.15); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.4); }
-        .badge-loss { background-color: rgba(248, 81, 73, 0.15); color: #f85149; border: 1px solid rgba(248, 81, 73, 0.4); }
+        /* VIP CARD SPECIAL */
+        .vip-card { background: linear-gradient(145deg, #181d28, #131720); border: 1px solid rgba(255, 179, 0, 0.3); }
+        .vip-card .prediction-val { color: var(--accent-gold); }
+        .vip-lock { text-align: center; padding: 20px 10px; }
+        .vip-lock i { font-size: 2rem; color: var(--accent-gold); margin-bottom: 10px; }
+        .vip-lock h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+        .vip-lock p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
 
-        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 8px; background-color: #238636; color: #ffffff; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 15px; transition: 0.2s; }
-        .btn-whatsapp:hover { background-color: #2ea043; }
-
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { text-align: left; padding: 10px; border-bottom: 1px solid #30363d; font-size: 0.88rem; }
-        th { color: #8b949e; font-weight: 600; }
-        td { color: #c9d1d9; }
+        /* WHATSAPP BUTTON */
+        .btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #000; padding: 14px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); }
+        .btn-whatsapp:hover { background: #20bd5a; }
     </style>
 </head>
 <body>
 
 <div class="container">
 
+    <!-- HEADER -->
     <header>
-        <h1>⚽ Odds Trade</h1>
-
-        <p>Daily professional football tips & high-odds insights</p>
+        <div class="logo-title">
+            <i class="fa-solid fa-chart-line"></i> ODDS TRADE
+        </div>
+        <p>Premium Football Tips & Odds Analysis</p>
     </header>
 
+    <!-- LEAGUES BANNER -->
+    <div class="leagues-bar">
+        <div class="league-item ucl"><i class="fa-solid fa-trophy"></i> UCL</div>
+        <div class="league-item epl"><i class="fa-solid fa-shield-halved"></i> Premier League</div>
+        <div class="league-item laliga"><i class="fa-solid fa-futbol"></i> La Liga</div>
+        <div class="league-item seriea"><i class="fa-solid fa-crown"></i> Serie A</div>
+        <div class="league-item bundesliga"><i class="fa-solid fa-star"></i> Bundesliga</div>
+        <div class="league-item ligue1"><i class="fa-solid fa-bolt"></i> Ligue 1</div>
+    </div>
+
     <!-- 1. FREE TIPS SECTION -->
-    <section class="sec-free">
-        <h2>🟢 Free Daily Tips</h2>
-        
-        <!-- ITEM 1 -->
-        <div class="card">
-            <div class="match-title">Real Madrid vs Barcelona</div>
-            <div class="tip-details">Prediction: Both Teams To Score (BTTS)</div>
-            <span class="badge badge-free">Free Tip</span>
+    <section>
+        <div class="section-header">
+            <div class="section-title title-free">
+                <i class="fa-solid fa-circle-check"></i> FREE DAILY TIPS
+            </div>
         </div>
 
-        <!-- ITEM 2 -->
-        <div class="card">
-            <div class="match-title">Arsenal vs Liverpool</div>
-            <div class="tip-details">Prediction: Over 2.5 Goals</div>
-            <span class="badge badge-free">Free Tip</span>
+        <!-- FREE MATCH 1 -->
+        <div class="match-card">
+            <div class="card-header">
+                <span class="league-badge epl"><i class="fa-solid fa-shield-halved"></i> Premier League</span>
+                <span>Today</span>
+            </div>
+            <div class="teams">Arsenal vs Liverpool</div>
+            <div class="prediction-box">
+                <span class="prediction-label">Prediction</span>
+                <span class="prediction-val">Over 2.5 Goals</span>
+            </div>
+        </div>
+
+        <!-- FREE MATCH 2 -->
+        <div class="match-card">
+            <div class="card-header">
+                <span class="league-badge laliga"><i class="fa-solid fa-futbol"></i> La Liga</span>
+                <span>Today</span>
+            </div>
+            <div class="teams">Real Madrid vs Barcelona</div>
+            <div class="prediction-box">
+                <span class="prediction-label">Prediction</span>
+                <span class="prediction-val">BTTS - Yes</span>
+            </div>
         </div>
     </section>
 
     <!-- 2. VIP SECTION -->
-    <section class="sec-vip">
-        <h2>⭐ VIP Premium Access</h2>
-        
-        <div class="card card-vip">
-            <div class="match-title">Exclusive High-Confidence Match</div>
-            <div class="tip-details">Premium daily ticket available for VIP members only.</div>
-            <span class="badge badge-vip">VIP Only</span>
+    <section>
+        <div class="section-header">
+            <div class="section-title title-vip">
+                <i class="fa-solid fa-crown"></i> VIP ACCESS
+            </div>
         </div>
 
-        <a href="https://wa.me/212633441715?text=Hello%20I%20want%20to%20join%20VIP" class="btn-whatsapp" target="_blank">
-            💬 Join VIP via WhatsApp
-        </a>
+        <div class="match-card vip-card">
+            <div class="vip-lock">
+                <i class="fa-solid fa-lock"></i>
+                <h3>High-Odds VIP Ticket Available</h3>
+                <p>Get exclusive daily high-confidence matches directly on WhatsApp.</p>
+                <a href="https://wa.me/212633441715?text=Hello%20Odds%20Trade%2C%20I%20want%20to%20join%20VIP" class="btn-whatsapp" target="_blank">
+                    <i class="fa-brands fa-whatsapp fa-lg"></i> JOIN VIP VIA WHATSAPP
+                </a>
+            </div>
+        </div>
     </section>
+
+</div>
+
+</body>
+</html>
