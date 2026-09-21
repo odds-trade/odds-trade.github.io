@@ -42,7 +42,6 @@
         .section-title { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         .title-free { color: var(--accent-green); }
         .title-vip { color: var(--accent-gold); }
-        .title-liquidity { color: var(--accent-blue); }
 
         /* MATCH CARDS */
         .match-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; margin-bottom: 16px; position: relative; transition: transform 0.2s, border-color 0.2s; }
@@ -51,28 +50,11 @@
         .league-badge { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
         .badge-logo { width: 16px; height: 16px; object-fit: contain; }
 
-        /* BADGES FOR LIQUIDITY & SOURCES */
-        .source-badge { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-        .odds-drop-badge { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.3); padding: 3px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
-        
         .teams { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
         
         .prediction-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--card-border); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
         .prediction-label { font-size: 0.8rem; color: var(--text-secondary); }
         .prediction-val { font-size: 0.9rem; font-weight: 700; color: var(--accent-green); }
-
-        /* TOP 3 LIQUIDITY LIST STYLING */
-        .liquidity-list { display: flex; flex-direction: column; gap: 10px; }
-        .liquidity-item { background: rgba(255, 255, 255, 0.02); border: 1px solid var(--card-border); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-        .liquidity-item-head { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-secondary); }
-        .vol-tag { color: var(--accent-green); font-weight: 700; background: rgba(0, 230, 118, 0.1); padding: 2px 6px; border-radius: 4px; }
-
-        .odds-movement-row { display: flex; align-items: center; justify-content: space-between; background: rgba(0, 0, 0, 0.2); border-radius: 6px; padding: 6px 10px; }
-        .odds-box { display: flex; flex-direction: column; }
-        .odds-label { font-size: 0.68rem; color: var(--text-secondary); }
-        .odds-val { font-size: 0.88rem; font-weight: 700; }
-        .old-odds { text-decoration: line-through; color: #94a3b8; }
-        .current-odds { color: var(--accent-green); }
 
         /* VIP CARD SPECIAL */
         .vip-card { background: linear-gradient(145deg, #181d28, #131720); border: 1px solid rgba(255, 179, 0, 0.3); }
@@ -147,7 +129,7 @@
         </div>
     </div>
 
-    <!-- CARD 1: FREE DAILY TIP -->
+    <!-- 1. FREE DAILY TIP -->
     <section>
         <div class="section-header">
             <div class="section-title title-free">
@@ -158,7 +140,7 @@
         <div class="match-card">
             <div class="card-header">
                 <span class="league-badge">
-                    <img src="https://crests.football-data.org/PD.png" class="badge-logo" alt="LaLiga"> La Liga
+                    <img src="https://crests.football-data.org/PD.png" class="badge-logo" alt="LaLiga"> LA LIGA
                 </span>
                 <span>Today</span>
             </div>
@@ -170,7 +152,7 @@
         </div>
     </section>
 
-    <!-- CARD 2: VIP ACCESS -->
+    <!-- 2. VIP ACCESS -->
     <section>
         <div class="section-header">
             <div class="section-title title-vip">
@@ -190,114 +172,12 @@
         </div>
     </section>
 
-    <!-- CARD 3: TOP 3 LIQUIDITY MARKETS (POLYMARKET & KALSHI TRACKING) -->
-    <section>
-        <div class="section-header">
-            <div class="section-title title-liquidity">
-                <i class="fa-solid fa-chart-line"></i> TOP 3 LIQUIDITY MARKETS (POLYMARKET & KALSHI)
-            </div>
-        </div>
-
-        <div class="match-card">
-            <div class="liquidity-list" id="liquidity-container">
-                <!-- Loaded dynamically via JavaScript -->
-            </div>
-        </div>
-    </section>
-
     <!-- FOOTER -->
     <footer>
         <p>© 2026 ODDS TRADE. All rights reserved.</p>
     </footer>
 
 </div>
-
-<!-- AUTOMATED ENGINE FOR TOP 3 POLYMARKET / KALSHI LIQUIDITY -->
-<script>
-    // Real-time Automated Queue representing top traded matches on Polymarket & Kalshi
-    const top3LiquidityMatches = [
-        {
-            league: "Premier League",
-            logo: "https://crests.football-data.org/PL.png",
-            teams: "Tottenham vs Manchester United",
-            source: "Polymarket",
-            volume: "$1.8M Vol",
-            marketLabel: "Over 2.5 Goals",
-            oldOdds: "1.90",
-            currentOdds: "1.62",
-            drop: "-15%",
-            expiry: new Date(Date.now() + 2 * 3600 * 1000)
-        },
-        {
-            league: "Premier League",
-            logo: "https://crests.football-data.org/PL.png",
-            teams: "Arsenal vs Chelsea",
-            source: "Kalshi",
-            volume: "$2.4M Vol",
-            marketLabel: "Arsenal (AH 0)",
-            oldOdds: "2.05",
-            currentOdds: "1.68",
-            drop: "-18%",
-            expiry: new Date(Date.now() + 24 * 3600 * 1000)
-        },
-        {
-            league: "UEFA Champions League",
-            logo: "https://crests.football-data.org/CL.png",
-            teams: "Real Madrid vs Manchester City",
-            source: "Polymarket",
-            volume: "$4.1M Vol",
-            marketLabel: "Over 2.5 Goals",
-            oldOdds: "1.88",
-            currentOdds: "1.52",
-            drop: "-19%",
-            expiry: new Date(Date.now() + 48 * 3600 * 1000)
-        }
-    ];
-
-    function renderTop3Liquidity() {
-        const container = document.getElementById('liquidity-container');
-        const now = new Date();
-
-        // Render active liquidity matches
-        let html = '';
-        top3LiquidityMatches.forEach((match, index) => {
-            html += `
-                <div class="liquidity-item">
-                    <div class="liquidity-item-head">
-                        <span class="league-badge">
-                            <img src="${match.logo}" class="badge-logo" alt="League"> ${match.league}
-                        </span>
-                        <div style="display:flex; gap:6px; align-items:center;">
-                            <span class="source-badge"><i class="fa-solid fa-chart-pie"></i> ${match.source}</span>
-                            <span class="vol-tag">${match.volume}</span>
-                            <span class="odds-drop-badge">${match.drop}</span>
-                        </div>
-                    </div>
-
-                    <div class="teams" style="font-size: 0.95rem; margin-bottom: 6px;">#${index + 1} ${match.teams}</div>
-
-                    <div class="odds-movement-row">
-                        <div class="odds-box">
-                            <span class="odds-label">${match.marketLabel} (Open)</span>
-                            <span class="odds-val old-odds">${match.oldOdds}</span>
-                        </div>
-                        <i class="fa-solid fa-angles-right" style="font-size:0.75rem; color:var(--text-secondary);"></i>
-                        <div class="odds-box">
-                            <span class="odds-label">Current Odds</span>
-                            <span class="odds-val current-odds">${match.currentOdds}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        });
-
-        container.innerHTML = html;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        renderTop3Liquidity();
-    });
-</script>
 
 </body>
 </html>
