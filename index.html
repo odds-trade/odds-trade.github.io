@@ -1,230 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odds Trade | Over/Under 2.5 Goals Analysis & VIP Tips</title>
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-dark: #0a0d12;
-            --card-bg: #121722;
-            --border-color: #1e2638;
-            --accent-green: #00e676;
-            --accent-gold: #ffb300;
-            --accent-red: #ff3d00;
-            --accent-blue: #29b6f6;
-            --text-main: #f1f5f9;
-            --text-sub: #94a3b8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odds Trade | Elite Football Analysis & VIP Tips</title>
+<!-- Google Fonts & Font Awesome Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+--bg-color: #0b0e14;
+--card-bg: #151921;
+--card-border: #232936;
+--accent-green: #00e676;
+--accent-gold: #ffb300;
+--text-primary: #f0f4f8;
+--text-secondary: #94a3b8;
+--brand-blue: #2563eb;
+}
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-dark); color: var(--text-main); padding: 10px; line-height: 1.4; }
-        .container { max-width: 720px; margin: 0 auto; }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-primary); padding: 15px; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; }
 
-        /* LIVE TICKER BAR */
-        .ticker-wrap { background: #1a2332; border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 12px; margin-bottom: 15px; overflow: hidden; display: flex; align-items: center; gap: 10px; font-size: 0.8rem; }
-        .ticker-title { background: var(--accent-red); color: #fff; font-weight: 800; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; white-space: nowrap; }
-        .ticker-text { color: var(--accent-gold); font-weight: 600; white-space: nowrap; animation: marquee 18s linear infinite; }
-        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+/* HEADER WITH BRAND LOGO */
+header { text-align: center; padding: 25px 10px 15px 10px; border-bottom: 1px solid var(--card-border); margin-bottom: 20px; }
+.logo-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.brand-logo-svg { width: 42px; height: 42px; vertical-align: middle; }
+header p { color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px; font-weight: 500; }
 
-        /* HEADER */
-        header { text-align: center; padding: 20px 10px; background: linear-gradient(180deg, #161f30 0%, #0a0d12 100%); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 15px; }
-        .logo-title { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; background: linear-gradient(135deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .logo-title i { color: #3b82f6; -webkit-text-fill-color: initial; }
-        header p { color: var(--text-sub); font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
+/* LEAGUES BAR WITH LOGO IMAGES */
+.leagues-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 15px; margin-bottom: 25px; overflow-x: auto; gap: 15px; }
+.league-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+.league-logo { width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); }
 
-        /* LEAGUES BAR */
-        .leagues-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px 12px; margin-bottom: 20px; overflow-x: auto; gap: 12px; }
-        .league-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; color: var(--text-sub); white-space: nowrap; }
-        .league-logo { width: 20px; height: 20px; object-fit: contain; }
+/* SECTION TITLES */
+section { margin-bottom: 25px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.section-title { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.title-free { color: var(--accent-green); }
+.title-vip { color: var(--accent-gold); }
 
-        /* SECTION HEADERS */
-        .section-box { margin-bottom: 20px; }
-        .sec-header { background: linear-gradient(90deg, #1e293b, #0f172a); border-left: 4px solid var(--accent-green); padding: 10px 14px; border-radius: 6px; font-size: 0.95rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; text-transform: uppercase; }
-        .sec-header.gold { border-left-color: var(--accent-gold); }
-        .badge-verified { background: rgba(0, 230, 118, 0.15); color: var(--accent-green); font-size: 0.7rem; padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(0,230,118,0.3); }
+/* MATCH CARDS */
+.match-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; transition: transform 0.2s, border-color 0.2s; }
+.match-card:hover { border-color: #3b82f6; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
+.league-badge { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-logo { width: 16px; height: 16px; object-fit: contain; }
 
-        /* DENSE TABLES */
-        .greek-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; font-size: 0.82rem; margin-bottom: 10px; }
-        .greek-table th { background: #1a2232; color: var(--text-sub); text-align: left; padding: 8px 10px; font-weight: 700; text-transform: uppercase; font-size: 0.72rem; border-bottom: 1px solid var(--border-color); }
-        .greek-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.03); vertical-align: middle; }
-        .greek-table tr:last-child td { border-bottom: none; }
-        .match-name { font-weight: 700; color: #fff; display: block; font-size: 0.88rem; }
-        .match-date { font-size: 0.72rem; color: var(--text-sub); }
-        .pick-tag { background: rgba(0, 230, 118, 0.15); color: var(--accent-green); padding: 4px 8px; border-radius: 4px; font-weight: 800; border: 1px solid rgba(0, 230, 118, 0.3); display: inline-block; }
-        .pick-tag.gold { background: rgba(255, 179, 0, 0.15); color: var(--accent-gold); border-color: rgba(255, 179, 0, 0.3); }
-        .odds-num { font-weight: 800; color: #fff; font-size: 0.9rem; }
-        .status-win { color: var(--accent-green); font-weight: 800; }
+.teams { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+.prediction-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--card-border); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
+.prediction-label { font-size: 0.8rem; color: var(--text-secondary); }
+.prediction-val { font-size: 0.9rem; font-weight: 700; color: var(--accent-green); }
 
-        /* VIP BANNER / PROMO BOX */
-        .vip-ticket-box { background: linear-gradient(145deg, #1a2232, #0d121c); border: 1px solid var(--accent-gold); border-radius: 12px; padding: 18px; text-align: center; position: relative; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(255, 179, 0, 0.1); }
-        .vip-badge-top { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent-gold); color: #000; font-weight: 900; font-size: 0.75rem; padding: 3px 14px; border-radius: 20px; text-transform: uppercase; }
-        .vip-title { font-size: 1.2rem; font-weight: 900; color: #fff; margin-top: 5px; margin-bottom: 5px; }
-        .vip-odds-mega { font-size: 1.8rem; font-weight: 900; color: var(--accent-gold); margin: 8px 0; }
-        .vip-details { font-size: 0.82rem; color: var(--text-sub); margin-bottom: 15px; }
+/* VIP CARD SPECIAL */
+.vip-card { background: linear-gradient(145deg, #181d28, #131720); border: 1px solid rgba(255, 179, 0, 0.3); }
+.vip-card .prediction-val { color: var(--accent-gold); }
+.vip-lock { text-align: center; padding: 20px 10px; }
+.vip-lock i { font-size: 2rem; color: var(--accent-gold); margin-bottom: 10px; }
+.vip-lock h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.vip-lock p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
 
-        /* PAYMENT & WHATSAPP BUTTONS */
-        .btn-wa { display: flex; align-items: center; justify-content: center; gap: 8px; background: #25d366; color: #000; font-weight: 800; padding: 12px; border-radius: 8px; text-decoration: none; font-size: 0.95rem; margin-bottom: 10px; }
-        .payments-row { display: flex; justify-content: center; align-items: center; gap: 15px; color: var(--text-sub); font-size: 0.75rem; margin-top: 10px; border-top: 1px solid var(--border-color); padding-top: 10px; }
-        .payments-row i { font-size: 1.1rem; color: #fff; }
-
-        /* FOOTER */
-        footer { text-align: center; padding: 15px; color: var(--text-sub); font-size: 0.75rem; border-top: 1px solid var(--border-color); margin-top: 20px; }
-    </style>
+/* WHATSAPP BUTTON */
+.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #000; padding: 14px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); }
+.btn-whatsapp:hover { background: #20bd5a; }
+</style>
 </head>
 <body>
 
 <div class="container">
 
-    <!-- TICKER BAR -->
-    <div class="ticker-wrap">
-        <span class="ticker-title">LIVE INFO</span>
-        <div class="ticker-text">DAILY HIGH CONFIDENCE OVER/UNDER 2.5 GOALS TICKET AVAILABLE • HIGH ACCURACY ANALYSIS • JOIN VIP NOW</div>
-    </div>
+<!-- HEADER WITH INTEGRATED SVG LOGO -->
+<header>
+<div class="logo-title">
+<svg class="brand-logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
+<stop offset="0%" stop-color="#1e293b"/>
+<stop offset="100%" stop-color="#0b0e14"/>
+</radialGradient>
+<linearGradient id="brandBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#2563eb"/>
+<stop offset="100%" stop-color="#38bdf8"/>
+</linearGradient>
+<linearGradient id="accentGreen" x1="0%" y1="100%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#00e676"/>
+<stop offset="100%" stop-color="#69f0ae"/>
+</linearGradient>
+</defs>
+<rect width="500" height="500" rx="100" fill="url(#bgGlow)"/>
+<circle cx="250" cy="250" r="210" fill="none" stroke="url(#brandBlue)" stroke-width="12" stroke-dasharray="120 280" stroke-linecap="round"/>
+<g transform="translate(0, -10)">
+<circle cx="205" cy="250" r="75" fill="none" stroke="url(#brandBlue)" stroke-width="28" stroke-linecap="round"/>
+<path d="M 285 175 L 375 175 M 330 175 L 330 325" fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round"/>
+<path d="M 160 280 L 220 230 L 270 260 L 350 160" fill="none" stroke="url(#accentGreen)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="350,145 365,175 335,170" fill="url(#accentGreen)"/>
+</g>
+</svg>
+ODDS TRADE
+</div>
+<p>Premium Football Tips & Odds Analysis</p>
+</header>
 
-    <!-- HEADER -->
-    <header>
-        <div class="logo-title">
-            <i class="fa-solid fa-chart-line"></i> ODDS TRADE
-        </div>
-        <p>PREMIUM OVER / UNDER 2.5 GOALS TIPS & MARKET ANALYSIS</p>
-    </header>
+<!-- LEAGUES BANNER WITH REAL LOGOS -->
+<div class="leagues-bar">
+<div class="league-item">
+<img src="https://crests.football-data.org/CL.png" class="league-logo" alt="UCL"> UCL
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/PL.png" class="league-logo" alt="Premier League"> Premier League
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/PD.png" class="league-logo" alt="La Liga"> La Liga
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/SA.png" class="league-logo" alt="Serie A"> Serie A
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/BL1.png" class="league-logo" alt="Bundesliga"> Bundesliga
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/FL1.png" class="league-logo" alt="Ligue 1"> Ligue 1
+</div>
+</div>
 
-    <!-- LEAGUES BANNER -->
-    <div class="leagues-bar">
-        <div class="league-item"><img src="https://crests.football-data.org/CL.png" class="league-logo"> UCL</div>
-        <div class="league-item"><img src="https://crests.football-data.org/PL.png" class="league-logo"> Premier League</div>
-        <div class="league-item"><img src="https://crests.football-data.org/PD.png" class="league-logo"> La Liga</div>
-        <div class="league-item"><img src="https://crests.football-data.org/SA.png" class="league-logo"> Serie A</div>
-        <div class="league-item"><img src="https://crests.football-data.org/BL1.png" class="league-logo"> Bundesliga</div>
-    </div>
+<!-- 1. FREE TIPS SECTION -->
+<section>
+<div class="section-header">
+<div class="section-title title-free">
+<i class="fa-solid fa-circle-check"></i> FREE DAILY TIPS
+</div>
+</div>
 
-    <!-- SECTION 1: FREE DAILY TIPS TABLE (OVER / UNDER 2.5) -->
-    <div class="section-box">
-        <div class="sec-header">
-            <span><i class="fa-solid fa-gift"></i> FREE DAILY OVER / UNDER 2.5 TIPS</span>
-            <span class="badge-verified"><i class="fa-solid fa-check-double"></i> VERIFIED</span>
-        </div>
-        
-        <table class="greek-table">
-            <thead>
-                <tr>
-                    <th>DATE / MATCH</th>
-                    <th>PICK</th>
-                    <th>ODDS</th>
-                    <th>STATUS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <span class="match-name">Tottenham vs Manchester United</span>
-                        <span class="match-date">Today • Premier League</span>
-                    </td>
-                    <td><span class="pick-tag">OVER 2.5 GOALS</span></td>
-                    <td class="odds-num">1.65</td>
-                    <td class="status-win"><i class="fa-solid fa-circle-check"></i> WON</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="match-name">Real Madrid vs Barcelona</span>
-                        <span class="match-date">Today • La Liga</span>
-                    </td>
-                    <td><span class="pick-tag">OVER 2.5 GOALS</span></td>
-                    <td class="odds-num">1.70</td>
-                    <td class="status-win"><i class="fa-solid fa-circle-check"></i> WON</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="match-name">Atletico Madrid vs Getafe</span>
-                        <span class="match-date">Today • La Liga</span>
-                    </td>
-                    <td><span class="pick-tag">UNDER 2.5 GOALS</span></td>
-                    <td class="odds-num">1.85</td>
-                    <td class="status-win"><i class="fa-solid fa-circle-check"></i> WON</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<!-- FREE MATCH 1 -->
+<div class="match-card">
+<div class="card-header">
+<span class="league-badge">
+<img src="https://crests.football-data.org/PL.png" class="badge-logo" alt="PL"> Premier League
+</span>
+<span>Today</span>
+</div>
+<div class="teams">Arsenal vs Liverpool</div>
+<div class="prediction-box">
+<span class="prediction-label">Prediction</span>
+<span class="prediction-val">Over 2.5 Goals</span>
+</div>
+</div>
 
-    <!-- SECTION 2: VIP ACCUMULATOR / OVER 2.5 TICKET -->
-    <div class="section-box">
-        <div class="vip-ticket-box">
-            <span class="vip-badge-top">NEXT VIP OFFER</span>
-            <div class="vip-title">HIGH-CONFIDENCE OVER/UNDER 2.5 TICKET</div>
-            <div class="vip-odds-mega">TOTAL ODDS: 10.00+</div>
-            <p class="vip-details">Includes 3 High-Liquidity Over/Under Goals Matches calculated with advanced market drop metrics.</p>
-            
-            <a href="https://wa.me/212633441715?text=Hello%20Odds%20Trade%2C%20I%20want%20the%20VIP%20Over%2FUnder%202.5%20Ticket" class="btn-wa" target="_blank">
-                <i class="fa-brands fa-whatsapp fa-lg"></i> GET VIP TICKET VIA WHATSAPP
-            </a>
+<!-- FREE MATCH 2 -->
+<div class="match-card">
+<div class="card-header">
+<span class="league-badge">
+<img src="https://crests.football-data.org/PD.png" class="badge-logo" alt="LaLiga"> La Liga
+</span>
+<span>Today</span>
+</div>
+<div class="teams">Real Madrid vs Barcelona</div>
+<div class="prediction-box">
+<span class="prediction-label">Prediction</span>
+<span class="prediction-val">BTTS - Yes</span>
+</div>
+</div>
+</section>
 
-            <div class="payments-row">
-                <span>ACCEPTED PAYMENTS:</span>
-                <i class="fa-brands fa-bitcoin" title="Bitcoin"></i>
-                <i class="fa-solid fa-wallet" title="USDT / Crypto"></i>
-                <i class="fa-brands fa-paypal" title="PayPal"></i>
-            </div>
-        </div>
-    </div>
+<!-- 2. VIP SECTION -->
+<section>
+<div class="section-header">
+<div class="section-title title-vip">
+<i class="fa-solid fa-crown"></i> VIP ACCESS
+</div>
+</div>
 
-    <!-- SECTION 3: RECENT WINNING ARCHIVE (OVER / UNDER 2.5) -->
-    <div class="section-box">
-        <div class="sec-header gold">
-            <span><i class="fa-solid fa-trophy"></i> RECENT VIP GOALS ARCHIVE</span>
-            <span class="badge-verified" style="color:var(--accent-gold); border-color:rgba(255,179,0,0.3); background:rgba(255,179,0,0.1);"><i class="fa-solid fa-star"></i> ARCHIVE</span>
-        </div>
-
-        <table class="greek-table">
-            <thead>
-                <tr>
-                    <th>MATCH</th>
-                    <th>TIP</th>
-                    <th>SCORE</th>
-                    <th>ODDS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <span class="match-name">Arsenal vs Chelsea</span>
-                        <span class="match-date">2026-09-20 • Premier League</span>
-                    </td>
-                    <td><span class="pick-tag gold">OVER 2.5</span></td>
-                    <td style="color:#fff; font-weight:700;">3 : 1</td>
-                    <td class="odds-num" style="color:var(--accent-gold);">1.75</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="match-name">Bayern Munich vs PSG</span>
-                        <span class="match-date">2026-09-19 • Champions League</span>
-                    </td>
-                    <td><span class="pick-tag gold">OVER 2.5</span></td>
-                    <td style="color:#fff; font-weight:700;">2 : 2</td>
-                    <td class="odds-num" style="color:var(--accent-gold);">1.68</td>
-                </tr>
-                <tr>
-                    <td>
-                        <span class="match-name">Juventus vs Inter Milan</span>
-                        <span class="match-date">2026-09-18 • Serie A</span>
-                    </td>
-                    <td><span class="pick-tag gold">UNDER 2.5</span></td>
-                    <td style="color:#fff; font-weight:700;">1 : 0</td>
-                    <td class="odds-num" style="color:var(--accent-gold);">1.92</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 ODDS TRADE. All rights reserved.</p>
-    </footer>
+<div class="match-card vip-card">
+<div class="vip-lock">
+<i class="fa-solid fa-lock"></i>
+<h3>High-Odds VIP Ticket Available</h3>
+<p>Get exclusive daily high-confidence matches directly on WhatsApp.</p>
+<a href="https://wa.me/212633441715?text=Hello%20Odds%20Trade%2C%20I%20want%20to%20join%20VIP" class="btn-whatsapp" target="_blank">
+<i class="fa-brands fa-whatsapp fa-lg"></i> JOIN VIP VIA WHATSAPP
+</a>
+</div>
+</div>
+</section>
 
 </div>
 
 </body>
 </html>
+
