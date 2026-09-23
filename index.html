@@ -1,259 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Odds Trade | Football Stats & Analytics Hub</title>
-    <!-- Google Fonts & Font Awesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Soufiane Messaoudi</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0b0e14;
-            --card-bg: #151921;
-            --card-border: #232936;
-            --accent-green: #00e676;
-            --accent-gold: #ffb300;
-            --accent-blue: #2563eb;
-            --text-primary: #f0f4f8;
-            --text-secondary: #94a3b8;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-        body { background-color: var(--bg-color); color: var(--text-primary); padding: 15px; line-height: 1.5; }
-        .container { max-width: 680px; margin: 0 auto; }
+        body {
+            background-color: #0b0e14;
+            color: #f0f4f8;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+        }
 
-        /* HEADER LOGO */
-        header { text-align: center; padding: 20px 10px 15px 10px; border-bottom: 1px solid var(--card-border); margin-bottom: 20px; }
-        .logo-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        header p { color: var(--text-secondary); font-size: 0.85rem; margin-top: 4px; font-weight: 500; }
+        .text-container {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #ffb300, #ff8f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(255, 179, 0, 0.2);
+        }
 
-        /* LEAGUE TABS BAR (TOP 5 + UCL) */
-        .league-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 10px; margin-bottom: 20px; scrollbar-width: none; }
-        .league-tabs::-webkit-scrollbar { display: none; }
-        .tab-btn { background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-secondary); padding: 8px 14px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; white-space: nowrap; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
-        .tab-btn img { width: 18px; height: 18px; object-fit: contain; }
-        .tab-btn.active, .tab-btn:hover { background: var(--brand-blue); color: #fff; border-color: var(--brand-blue); }
-
-        /* SECTION HEADERS */
-        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-        .section-title { font-size: 1.05rem; font-weight: 800; display: flex; align-items: center; gap: 8px; color: #fff; }
-
-        /* MATCH STATS CARD (FOOTYSTATS SIMULATOR STYLE) */
-        .stats-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; margin-bottom: 15px; position: relative; }
-        .card-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 10px; font-weight: 600; }
-        .league-tag { display: flex; align-items: center; gap: 6px; text-transform: uppercase; }
-        .league-tag img { width: 16px; height: 16px; object-fit: contain; }
-
-        .teams-row { font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; }
-
-        /* FOOTYSTATS METRICS GRID */
-        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; border: 1px solid var(--card-border); margin-bottom: 12px; }
-        .metric-item { text-align: center; }
-        .metric-label { font-size: 0.68rem; color: var(--text-secondary); display: block; font-weight: 600; margin-bottom: 2px; }
-        .metric-val { font-size: 0.95rem; font-weight: 800; color: var(--accent-green); }
-        .metric-val.high { color: var(--accent-green); }
-        .metric-val.mid { color: var(--accent-gold); }
-
-        /* PREDICTION BOX */
-        .prediction-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--card-border); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
-        .prediction-label { font-size: 0.8rem; color: var(--text-secondary); }
-        .prediction-val { font-size: 0.9rem; font-weight: 800; color: var(--accent-green); }
-
-        /* VIP TELEGRAM CARD */
-        .vip-card { background: linear-gradient(145deg, #181d28, #131720); border: 1px solid rgba(255, 179, 0, 0.3); border-radius: 12px; padding: 20px; text-align: center; margin-top: 25px; }
-        .vip-card i.fa-crown { font-size: 2rem; color: var(--accent-gold); margin-bottom: 10px; }
-        .vip-card h3 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
-        .vip-card p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
-
-        .btn-telegram { display: flex; align-items: center; justify-content: center; gap: 10px; background: #0088cc; color: #fff; padding: 14px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; box-shadow: 0 4px 15px rgba(0, 136, 204, 0.2); }
-        .btn-telegram:hover { background: #0077b3; }
-
-        footer { text-align: center; padding: 20px 0 10px 0; border-top: 1px solid var(--card-border); color: var(--text-secondary); font-size: 0.78rem; margin-top: 20px; }
+        @media (max-width: 600px) {
+            .text-container {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-
-    <!-- HEADER -->
-    <header>
-        <div class="logo-title">
-            <i class="fa-solid fa-chart-line"></i> ODDS TRADE STATS
-        </div>
-        <p>Automated FootyStats Analysis & Over 2.5 Metrics</p>
-    </header>
-
-    <!-- LEAGUES SELECTOR (TOP 5 + CHAMPIONS LEAGUE) -->
-    <div class="league-tabs">
-        <button class="tab-btn active" onclick="filterLeague('ALL')">All Leagues</button>
-        <button class="tab-btn" onclick="filterLeague('UCL')"><img src="https://crests.football-data.org/CL.png" alt="UCL"> Champions League</button>
-        <button class="tab-btn" onclick="filterLeague('PL')"><img src="https://crests.football-data.org/PL.png" alt="PL"> Premier League</button>
-        <button class="tab-btn" onclick="filterLeague('PD')"><img src="https://crests.football-data.org/PD.png" alt="LaLiga"> La Liga</button>
-        <button class="tab-btn" onclick="filterLeague('SA')"><img src="https://crests.football-data.org/SA.png" alt="Serie A"> Serie A</button>
-        <button class="tab-btn" onclick="filterLeague('BL1')"><img src="https://crests.football-data.org/BL1.png" alt="Bundesliga"> Bundesliga</button>
-        <button class="tab-btn" onclick="filterLeague('FL1')"><img src="https://crests.football-data.org/FL1.png" alt="Ligue 1"> Ligue 1</button>
+    <div class="text-container">
+        سفيان مسعودي المالك الفعلي لأراضي مرجانة
     </div>
-
-    <!-- MATCH STATS CONTAINER -->
-    <section>
-        <div class="section-header">
-            <div class="section-title">
-                <i class="fa-solid fa-fire" style="color: var(--accent-green);"></i> HIGH OVER 2.5 STATS MATCHES
-            </div>
-        </div>
-
-        <div id="stats-matches-container">
-            <!-- Dynamic Football Stats Injected Here -->
-        </div>
-    </section>
-
-    <!-- VIP ACCESS SECTION -->
-    <section>
-        <div class="vip-card">
-            <i class="fa-solid fa-crown"></i>
-            <h3>High-Odds VIP Ticket Available</h3>
-            <p>Get exclusive daily high-confidence matches directly on Telegram.</p>
-            <a href="https://t.me/+vupTmveoFCwwMDFk" class="btn-telegram" target="_blank">
-                <i class="fa-brands fa-telegram fa-lg"></i> JOIN VIP VIA TELEGRAM
-            </a>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2026 ODDS TRADE. All rights reserved.</p>
-    </footer>
-
-</div>
-
-<!-- JAVASCRIPT AUTOMATED FOOTYSTATS SIMULATOR ENGINE -->
-<script>
-    // Database of Top 5 Leagues & Champions League Fixtures + FootyStats Analytics
-    const footyStatsData = [
-        {
-            leagueCode: "PL",
-            leagueName: "Premier League",
-            logo: "https://crests.football-data.org/PL.png",
-            teams: "Arsenal vs Liverpool",
-            time: "Today • 17:30",
-            avgGoals: "3.25",
-            over25Prob: "78%",
-            bttsProb: "68%",
-            prediction: "Over 2.5 Goals"
-        },
-        {
-            leagueCode: "UCL",
-            leagueName: "Champions League",
-            logo: "https://crests.football-data.org/CL.png",
-            teams: "Real Madrid vs Manchester City",
-            time: "Today • 20:00",
-            avgGoals: "3.50",
-            over25Prob: "82%",
-            bttsProb: "74%",
-            prediction: "Over 2.5 Goals"
-        },
-        {
-            leagueCode: "PD",
-            leagueName: "La Liga",
-            logo: "https://crests.football-data.org/PD.png",
-            teams: "Barcelona vs Atletico Madrid",
-            time: "Today • 21:00",
-            avgGoals: "2.90",
-            over25Prob: "65%",
-            bttsProb: "60%",
-            prediction: "Over 2.5 Goals"
-        },
-        {
-            leagueCode: "BL1",
-            leagueName: "Bundesliga",
-            logo: "https://crests.football-data.org/BL1.png",
-            teams: "Bayern Munich vs Borussia Dortmund",
-            time: "Today • 18:30",
-            avgGoals: "3.80",
-            over25Prob: "88%",
-            bttsProb: "80%",
-            prediction: "Over 2.5 Goals"
-        },
-        {
-            leagueCode: "SA",
-            leagueName: "Serie A",
-            logo: "https://crests.football-data.org/SA.png",
-            teams: "Inter Milan vs AC Milan",
-            time: "Today • 20:45",
-            avgGoals: "2.75",
-            over25Prob: "62%",
-            bttsProb: "58%",
-            prediction: "Over 2.5 Goals"
-        },
-        {
-            leagueCode: "FL1",
-            leagueName: "Ligue 1",
-            logo: "https://crests.football-data.org/FL1.png",
-            teams: "PSG vs Marseille",
-            time: "Today • 20:45",
-            avgGoals: "3.10",
-            over25Prob: "72%",
-            bttsProb: "65%",
-            prediction: "Over 2.5 Goals"
-        }
-    ];
-
-    function renderMatches(filter = "ALL") {
-        const container = document.getElementById('stats-matches-container');
-        let html = '';
-
-        const filteredList = filter === "ALL" ? footyStatsData : footyStatsData.filter(m => m.leagueCode === filter);
-
-        filteredList.forEach(match => {
-            html += `
-                <div class="stats-card">
-                    <div class="card-top">
-                        <span class="league-tag">
-                            <img src="${match.logo}" alt="${match.leagueName}"> ${match.leagueName}
-                        </span>
-                        <span>${match.time}</span>
-                    </div>
-
-                    <div class="teams-row">${match.teams}</div>
-
-                    <!-- FOOTYSTATS METRICS -->
-                    <div class="metrics-grid">
-                        <div class="metric-item">
-                            <span class="metric-label">Avg Goals/Match</span>
-                            <span class="metric-val high">${match.avgGoals}</span>
-                        </div>
-                        <div class="metric-item">
-                            <span class="metric-label">Over 2.5 %</span>
-                            <span class="metric-val high">${match.over25Prob}</span>
-                        </div>
-                        <div class="metric-item">
-                            <span class="metric-label">BTTS %</span>
-                            <span class="metric-val mid">${match.bttsProb}</span>
-                        </div>
-                    </div>
-
-                    <div class="prediction-box">
-                        <span class="prediction-label">FootyStats AI Pick</span>
-                        <span class="prediction-val">${match.prediction}</span>
-                    </div>
-                </div>
-            `;
-        });
-
-        container.innerHTML = html;
-    }
-
-    function filterLeague(code) {
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        renderMatches(code);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        renderMatches('ALL');
-    });
-</script>
 
 </body>
 </html>
