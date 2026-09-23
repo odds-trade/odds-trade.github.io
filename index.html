@@ -1,53 +1,190 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soufiane Messaoudi</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odds Trade | Elite Football Analysis & VIP Tips</title>
+<!-- Google Fonts & Font Awesome Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+--bg-color: #0b0e14;
+--card-bg: #151921;
+--card-border: #232936;
+--accent-green: #00e676;
+--accent-gold: #ffb300;
+--text-primary: #f0f4f8;
+--text-secondary: #94a3b8;
+--brand-blue: #2563eb;
+}
 
-        body {
-            background-color: #0b0e14;
-            color: #f0f4f8;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            overflow: hidden;
-        }
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-primary); padding: 15px; line-height: 1.5; }
+.container { max-width: 680px; margin: 0 auto; }
 
-        .text-container {
-            font-size: 2.2rem;
-            font-weight: 800;
-            line-height: 1.6;
-            background: linear-gradient(135deg, #ffb300, #ff8f00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(255, 179, 0, 0.2);
-        }
+/* HEADER WITH BRAND LOGO */
+header { text-align: center; padding: 25px 10px 15px 10px; border-bottom: 1px solid var(--card-border); margin-bottom: 20px; }
+.logo-title { font-size: 2rem; font-weight: 800; letter-spacing: -0.5px; background: linear-gradient(135deg, #60a5fa, #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.brand-logo-svg { width: 42px; height: 42px; vertical-align: middle; }
+header p { color: var(--text-secondary); font-size: 0.88rem; margin-top: 6px; font-weight: 500; }
 
-        @media (max-width: 600px) {
-            .text-container {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+/* LEAGUES BAR WITH LOGO IMAGES */
+.leagues-bar { display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 15px; margin-bottom: 25px; overflow-x: auto; gap: 15px; }
+.league-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); white-space: nowrap; }
+.league-logo { width: 22px; height: 22px; object-fit: contain; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.5)); }
+
+/* SECTION TITLES */
+section { margin-bottom: 25px; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.section-title { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.title-free { color: var(--accent-green); }
+.title-vip { color: var(--accent-gold); }
+
+/* MATCH CARDS */
+.match-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; transition: transform 0.2s, border-color 0.2s; }
+.match-card:hover { border-color: #3b82f6; }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 0.78rem; color: var(--text-secondary); font-weight: 600; }
+.league-badge { display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-logo { width: 16px; height: 16px; object-fit: contain; }
+
+.teams { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+.prediction-box { background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--card-border); border-radius: 8px; padding: 10px 12px; display: flex; justify-content: space-between; align-items: center; }
+.prediction-label { font-size: 0.8rem; color: var(--text-secondary); }
+.prediction-val { font-size: 0.9rem; font-weight: 700; color: var(--accent-green); }
+
+/* VIP CARD SPECIAL */
+.vip-card { background: linear-gradient(145deg, #181d28, #131720); border: 1px solid rgba(255, 179, 0, 0.3); }
+.vip-card .prediction-val { color: var(--accent-gold); }
+.vip-lock { text-align: center; padding: 20px 10px; }
+.vip-lock i { font-size: 2rem; color: var(--accent-gold); margin-bottom: 10px; }
+.vip-lock h3 { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.vip-lock p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 15px; }
+
+/* WHATSAPP BUTTON */
+.btn-whatsapp { display: flex; align-items: center; justify-content: center; gap: 10px; background: #25d366; color: #000; padding: 14px 20px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: background 0.2s; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2); }
+.btn-whatsapp:hover { background: #20bd5a; }
+</style>
 </head>
 <body>
 
-    <div class="text-container">
-        سفيان مسعودي المالك الفعلي لأراضي مرجانة
-    </div>
+<div class="container">
+
+<!-- HEADER WITH INTEGRATED SVG LOGO -->
+<header>
+<div class="logo-title">
+<svg class="brand-logo-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="bgGlow" cx="50%" cy="50%" r="60%">
+<stop offset="0%" stop-color="#1e293b"/>
+<stop offset="100%" stop-color="#0b0e14"/>
+</radialGradient>
+<linearGradient id="brandBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#2563eb"/>
+<stop offset="100%" stop-color="#38bdf8"/>
+</linearGradient>
+<linearGradient id="accentGreen" x1="0%" y1="100%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#00e676"/>
+<stop offset="100%" stop-color="#69f0ae"/>
+</linearGradient>
+</defs>
+<rect width="500" height="500" rx="100" fill="url(#bgGlow)"/>
+<circle cx="250" cy="250" r="210" fill="none" stroke="url(#brandBlue)" stroke-width="12" stroke-dasharray="120 280" stroke-linecap="round"/>
+<g transform="translate(0, -10)">
+<circle cx="205" cy="250" r="75" fill="none" stroke="url(#brandBlue)" stroke-width="28" stroke-linecap="round"/>
+<path d="M 285 175 L 375 175 M 330 175 L 330 325" fill="none" stroke="#ffffff" stroke-width="28" stroke-linecap="round"/>
+<path d="M 160 280 L 220 230 L 270 260 L 350 160" fill="none" stroke="url(#accentGreen)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="350,145 365,175 335,170" fill="url(#accentGreen)"/>
+</g>
+</svg>
+ODDS TRADE
+</div>
+<p>Premium Football Tips & Odds Analysis</p>
+</header>
+
+<!-- LEAGUES BANNER WITH REAL LOGOS -->
+<div class="leagues-bar">
+<div class="league-item">
+<img src="https://crests.football-data.org/CL.png" class="league-logo" alt="UCL"> UCL
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/PL.png" class="league-logo" alt="Premier League"> Premier League
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/PD.png" class="league-logo" alt="La Liga"> La Liga
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/SA.png" class="league-logo" alt="Serie A"> Serie A
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/BL1.png" class="league-logo" alt="Bundesliga"> Bundesliga
+</div>
+<div class="league-item">
+<img src="https://crests.football-data.org/FL1.png" class="league-logo" alt="Ligue 1"> Ligue 1
+</div>
+</div>
+
+<!-- 1. FREE TIPS SECTION -->
+<section>
+<div class="section-header">
+<div class="section-title title-free">
+<i class="fa-solid fa-circle-check"></i> FREE DAILY TIPS
+</div>
+</div>
+
+<!-- FREE MATCH 1 -->
+<div class="match-card">
+<div class="card-header">
+<span class="league-badge">
+<img src="https://crests.football-data.org/PL.png" class="badge-logo" alt="PL"> Premier League
+</span>
+<span>Today</span>
+</div>
+<div class="teams">Arsenal vs Liverpool</div>
+<div class="prediction-box">
+<span class="prediction-label">Prediction</span>
+<span class="prediction-val">Over 2.5 Goals</span>
+</div>
+</div>
+
+<!-- FREE MATCH 2 -->
+<div class="match-card">
+<div class="card-header">
+<span class="league-badge">
+<img src="https://crests.football-data.org/PD.png" class="badge-logo" alt="LaLiga"> La Liga
+</span>
+<span>Today</span>
+</div>
+<div class="teams">Real Madrid vs Barcelona</div>
+<div class="prediction-box">
+<span class="prediction-label">Prediction</span>
+<span class="prediction-val">BTTS - Yes</span>
+</div>
+</div>
+</section>
+
+<!-- 2. VIP SECTION -->
+<section>
+<div class="section-header">
+<div class="section-title title-vip">
+<i class="fa-solid fa-crown"></i> VIP ACCESS
+</div>
+</div>
+
+<div class="match-card vip-card">
+<div class="vip-lock">
+<i class="fa-solid fa-lock"></i>
+<h3>High-Odds VIP Ticket Available</h3>
+<p>Get exclusive daily high-confidence matches directly on WhatsApp.</p>
+<a href="https://wa.me/212633441715?text=Hello%20Odds%20Trade%2C%20I%20want%20to%20join%20VIP" class="btn-whatsapp" target="_blank">
+<i class="fa-brands fa-whatsapp fa-lg"></i> JOIN VIP VIA WHATSAPP
+</a>
+</div>
+</div>
+</section>
+
+</div>
 
 </body>
 </html>
+
